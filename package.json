@@ -1,6 +1,7 @@
 {
   "scripts": {
     "dev": "NODE_ENV=development PORT=3001 node server.js",
+    "debug": "NODE_ENV=development PORT=3001 node server.js --inspect",
     "build": "npm run clean && npm run build-server && npm run build-client",
     "start": "PORT=3000 NODE_ENV=production node server.js",
     "storybook": "start-storybook -s ./static -p 6006",
@@ -20,10 +21,10 @@
   },
   "dependencies": {
     "apicache": "^0.8.4",
-    "axios": "^0.17.1",
     "classnames": "^2.2.5",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
+    "isomorphic-unfetch": "^2.0.0",
     "express": "^4.16.2",
     "express-http-proxy": "^1.0.4",
     "isomorphic-cookie": "^1.2.3",

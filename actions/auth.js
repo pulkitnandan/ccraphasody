@@ -21,7 +21,7 @@ export function logout() {
 export function login(data) {
   return dispatch => {
     return getAuthToken(data.username, data.password).then(res => {
-
+console.log(res)
       if(res.error_code == undefined){
           const sessionId = res.sessionId;
           saveCookie('sessionId', sessionId);

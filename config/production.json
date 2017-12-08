@@ -1,10 +1,9 @@
 {
   "server": {
-    "host": "192.237.179.58",
-    "port": "80"
+    "host": "localhost",
+    "port": "4000"
   },
-  "api":{
-    "host": "http://api.marketcloud.it",
-    "publicKey": "91380338-abbb-4d29-b3b8-4ba72c4734c0"
+  "api": {
+    "host": "http://localhost:4000/proxy/"
   }
 }

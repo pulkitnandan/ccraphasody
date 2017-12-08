@@ -15,13 +15,14 @@ class MyPage extends React.Component {
     let cookieInfo = cook(isServer, isServer
       ? req.headers.cookie
       : '');
-
+console.log(cookieInfo)
     if (!store.getState().isAuthenticated) {
       if (cookieInfo.valid) {
         console.log(cookieInfo)
         store.dispatch(setCurrentUser({user: cookieInfo.user, sessionId: cookieInfo.sessionId}));
         apiService = new apiServiceWrapper(cookieInfo.sessionId)
 
+    
       } else {
         //    Router.push('/login')
       }
@@ -29,7 +30,6 @@ class MyPage extends React.Component {
       apiService = new apiServiceWrapper(cookieInfo.sessionId)
     let products = [];
     if (apiService) {
-
       products = await(apiService.getProducts());
       products = products.data;
 
