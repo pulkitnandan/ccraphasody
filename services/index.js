@@ -7,9 +7,9 @@ class apiWrapper{
     this.headers = headers
   }
 
-  getProducts(skip , limit){
-    return getProducts(this.headers, skip, limit)
-  }
+  getProducts = (skip , limit) => getProducts(this.headers, skip, limit)
+  getProduct = (videoId) => getProduct(this.headers, videoId)
+  
 }
 
 export default apiWrapper

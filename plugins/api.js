@@ -9,12 +9,16 @@ import config from '../config'
 //     })
 
 const urls = {
-  userLoginApiURL: () => {
+  userLogin: () => {
     return `/user/auth`
   },
 
-  videosApiURL: (sessionId, skip = 0, limit = 10) => {
+  videos: (sessionId, skip = 0, limit = 10) => {
     return `/videos?sessionId=${sessionId}&skip=${skip}&limit=${limit}`
+  },
+
+  video: (sessionId, videoId) => {
+    return `/video?sessionId=${sessionId}&videoId=${videoId}`
   }
 }
 

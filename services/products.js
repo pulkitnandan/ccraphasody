@@ -1,8 +1,9 @@
 import { urls, post, get } from '../plugins/api'
 
-const getProducts = function(sessionId, skip, limit){
-  return (get(urls.videosApiURL(sessionId, skip, limit)))
-
+export const getProducts = function(sessionId, skip, limit){
+  return (get(urls.videos(sessionId, skip, limit)))
 }
 
-export { getProducts }
+export const getProduct = function(sessionId, videoId){
+  return (get(urls.video(sessionId, videoId)))
+}
