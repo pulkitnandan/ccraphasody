@@ -1,9 +1,0 @@
-{
-  "server": {
-    "host": "localhost",
-    "port": "4000"
-  },
-  "api": {
-    "host": "https://requestb.in/15wzmr41?proxy/"
-  }
-}
