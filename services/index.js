@@ -1,5 +1,5 @@
 import {urls, get, putAuth} from '../plugins/api'
-import {getProducts} from './products'
+import {getProducts, getProduct} from './products'
 
 class apiWrapper{
 

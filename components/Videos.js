@@ -1,4 +1,5 @@
 import cx from 'classnames';
+import Link from 'next/link'
 
 class Videos extends React.Component {
 
@@ -8,6 +9,7 @@ class Videos extends React.Component {
 
   }
 
+  handleVideoClick = e => e.stopPropagation()
 
   render() {
 
@@ -20,23 +22,24 @@ class Videos extends React.Component {
     return sd
   }
     let rows = [];
-    console.log(this.props.data)
     for (var i = 0; i < this.props.data.length; i++) {
       let url  = './static/' + this.props.data[i]['url'];
       let heading = this.props.data[i]['name'];
       let description = this.props.data[i]['description'];
       let id = this.props.data[i]['_id'];
       rows.push(
-        <div className="course" key={id}>
+        <Link key={id} href={{ pathname: '/video', query: { id } }}>
+        <div className="course">
           <h3>{heading}</h3>
           <div className="course-img">
-            <video className="course-video" controls>
+            <video className="course-video" controls onClick={this.handleVideoClick}>
               <source src={url} type="video/mp4">
               </source>
             </video>
           </div>
           <p>{shortDesciptions(description)}</p>
         </div>
+        </Link>
       );
     }
     return (

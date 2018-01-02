@@ -1,5 +1,6 @@
 import Layout from '../components/Layout';
 import Home from '../components/Home';
+import Video from '../components/Video';
 import Router from 'next/router'
 import withRedux from 'next-redux-wrapper'
 import {cook} from '../plugins/cookieman'
@@ -10,7 +11,7 @@ import apiServiceWrapper from '../services/index'
 import {getAuthToken} from '../services/auth'
 
 class MyPage extends React.Component {
-  static async getInitialProps({store, isServer, req, query: { videoId } }) {
+  static async getInitialProps({store, isServer, req, query: { id } }) {
     var apiService = undefined
     let cookieInfo = cook(isServer, isServer
       ? req.headers.cookie
@@ -25,10 +26,14 @@ class MyPage extends React.Component {
       }
     } else
       apiService = new apiServiceWrapper(cookieInfo.sessionId)
+    let productArray = [];
     let product = {};
+    let products = [];
     if (apiService) {
-      product = await(apiService.getProduct(videoId));
-      product = product.data;
+      productArray = await( Promise.all(apiService.getProduct(id), apiService.getProducts()));
+      console.log(productArray)
+      product = productArray[0]['data'];
+      products = productArray[1]['data'];
 
       var layoutData = {
         currentPage: '/'
@@ -46,7 +51,7 @@ class MyPage extends React.Component {
     } else {
       userAgent = req.headers['user-agent']
     }
-    return {layoutData, isServer, auth: store.getState(), userAgent, product}
+    return {layoutData, isServer, auth: store.getState(), userAgent, product, products}
   }
 
   componentDidMount() {}
@@ -55,7 +60,14 @@ class MyPage extends React.Component {
     return (
       <div>
         <Layout auth={this.props.auth} title='Video' data={this.props.layoutData} userAgent={this.props.userAgent}>
-          <Video auth={this.props.auth} data={this.props.product}/>
+          <div>
+            <div>
+              <Video auth={this.props.auth} data={this.props.product}/>
+            </div>
+            <div className="main-item">
+              <Videos data={this.props.products} /> 
+            </div>
+          </div>
         </Layout>
       </div>
     )

@@ -1,6 +1,6 @@
 import cx from 'classnames';
 
-class Videos extends React.Component {
+class Video extends React.Component {
 
   constructor(props) {
     super(props);
@@ -19,14 +19,12 @@ class Videos extends React.Component {
 
     return sd
   }
-    let rows = [];
-    console.log(this.props.data)
-    for (var i = 0; i < this.props.data.length; i++) {
-      let url  = './static/' + this.props.data[i]['url'];
-      let heading = this.props.data[i]['name'];
-      let description = this.props.data[i]['description'];
-      let id = this.props.data[i]['_id'];
-      rows.push(
+    let row = '';
+      let url  = './static/' + this.props.data['url'];
+      let heading = this.props.data['name'];
+      let description = this.props.data['description'];
+      let id = this.props.data['_id'];
+      row = (
         <div className="course" key={id}>
           <h3>{heading}</h3>
           <div className="course-img">
@@ -38,13 +36,12 @@ class Videos extends React.Component {
           <p>{shortDesciptions(description)}</p>
         </div>
       );
-    }
     return (
       <div className="flex-container flex-wrap courses visible">
-        {rows}
+        {row}
       </div>
     );
   }
 }
 
-export default(Videos);
+export default(Video);

@@ -15,7 +15,6 @@ class MyPage extends React.Component {
     let cookieInfo = cook(isServer, isServer
       ? req.headers.cookie
       : '');
-console.log(cookieInfo)
     if (!store.getState().isAuthenticated) {
       if (cookieInfo.valid) {
         console.log(cookieInfo)

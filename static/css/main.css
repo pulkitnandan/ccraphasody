@@ -108,6 +108,7 @@ html, body {
   margin-right: auto;
   text-decoration: none;
   color: #252F46;
+  cursor: pointer;
 }
 
 .course > p {
